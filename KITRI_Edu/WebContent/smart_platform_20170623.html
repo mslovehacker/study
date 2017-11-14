@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="http://code.jquery.com/jquery-1.6.3.min.js"></script>
+<title>KITRI 교육안내 - Smart Platform(Java)기반 융합컨텐츠 개발자 과정</title>
+<style>
+/* Relative positioning*/
+#wrapper {
+	position: relative;
+	margin: 50px auto 20px auto;
+	border: 1px solid #fafafa;
+	box-shadow: 0 3px 3px rgba(0, 0, 0, .5);
+}
+
+/* Hide the original tooltips contents */
+.pin {
+	display: none;
+}
+
+/* Begin styling the tooltips and pins */
+.tooltip-up, .tooltip-down {
+	position: absolute;
+	background: url(arrow-up-down.png);
+	width: 36px;
+	height: 52px;
+}
+
+.tooltip-down {
+	background-position: 0 -52px;
+}
+
+.tooltip {
+	display: none;
+	width: 200px;
+	cursor: help;
+	text-shadow: 0 1px 0 #fff;
+	position: absolute;
+	top: 10px;
+	left: 50%;
+	z-index: 999;
+	margin-left: -115px;
+	padding: 15px;
+	color: #222;
+	border-radius: 5px;
+	box-shadow: 0 3px 0 rgba(0, 0, 0, .7);
+	background: #fff1d3;
+	background: linear-gradient(top, #fff1d3, #ffdb90);
+}
+
+.tooltip::after {
+	content: '';
+	position: absolute;
+	top: -10px;
+	left: 50%;
+	margin-left: -10px;
+	border-bottom: 10px solid #fff1d3;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+}
+
+.tooltip-down .tooltip {
+	bottom: 12px;
+	top: auto;
+}
+
+.tooltip-down .tooltip::after {
+	bottom: -10px;
+	top: auto;
+	border-bottom: 0;
+	border-top: 10px solid #ffdb90;
+}
+
+.tooltip h2 {
+	font: bold 1.3em 'Trebuchet MS', Tahoma, Arial;
+	margin: 0 0 10px;
+}
+
+.tooltip ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+</style>
+<script>
+		$(document).ready(function(){
+		
+			// set the wrapper width and height to match the img size
+			$('#wrapper').css({'width':$('#wrapper img').width(),
+							  'height':$('#wrapper img').height()
+			})
+			
+			//tooltip direction
+			var tooltipDirection;
+						 
+			for (i=0; i<$(".pin").length; i++)
+			{				
+				// set tooltip direction type - up or down             
+				if ($(".pin").eq(i).hasClass('pin-down')) {
+					tooltipDirection = 'tooltip-down';
+				} else {
+					tooltipDirection = 'tooltip-up';
+					}
+			
+				// append the tooltip
+				$("#wrapper").append("<div style='left:"+$(".pin").eq(i).data('xpos')+"px;top:"+$(".pin").eq(i).data('ypos')+"px' class='" + tooltipDirection +"'>\
+													<div class='tooltip'>" + $(".pin").eq(i).html() + "</div>\
+											</div>");
+			}    
+			
+			// show/hide the tooltip
+			$('.tooltip-up, .tooltip-down').mouseenter(function(){
+						$(this).children('.tooltip').fadeIn(100);
+					}).mouseleave(function(){
+						$(this).children('.tooltip').fadeOut(100);
+					})
+		});
+    </script>
+
+</head>
+
+<body>
+	<div id="wrapper">
+		<img
+			src="http://www.kitri.re.kr/uploadfile/smart_platform_20170615_new1.jpg"
+			border="0" usemap="#Map" />
+		<map name="Map">
+			<area
+				href="http://www.kitri.re.kr/e_job_edu/webpage/2017/KITRI_IT_application.doc"
+				shape="rect" alt="" target="_blank" coords="510,2168,606,2188" />
+			<area href="http://academy.kitri.re.kr/academy/etc/location.web"
+				shape="rect" alt="" target="_blank" coords="352,602,394,620" />
+			<area href="mailto:jiwon@kitri.re.kr" shape="rect" alt=""
+				target="_blank" coords="344,2172,454,2189" />
+			<area href="mailto:jiwon@kitri.re.kr" shape="rect" alt=""
+				target="_blank" coords="377,2338,493,2356" />
+			<area href="http://www.hrd.go.kr/hrdp/gi/pgibo/PGIBO0200T.do"
+				shape="rect" alt="" target="_blank" coords="140,1900,231,1918" />
+			<area href="http://hrd.go.kr/hrdp/ct/pctfo/PCTFO0100T.do"
+				shape="rect" alt="" target="_blank" coords="272,1918,364,1940" />
+			<area href="http://academy.kitri.re.kr" shape="rect" alt=""
+				target="_blank" coords="453,2412,594,2448" />
+			<area href="http://blog.naver.com/kitri_edu/220590578407"
+				shape="rect" alt="" target="_blank" coords="137,2357,231,2389" />
+		</map>
+		<div class="pin pin-down" data-xpos="450" data-ypos="110">
+			<h2>Europe</h2>
+			<ul>
+				<li><b>Area (km²):</b> 10,180,000</li>
+				<li><b>Population:</b> 731,000,000</li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>
